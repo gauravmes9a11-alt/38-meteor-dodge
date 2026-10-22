@@ -1,95 +1,45 @@
 # Meteor Dodge Repair Lab
 
-This project is a space survival obstacle-dodging game using **Pygame**. It introduces students to directional velocity vectors, radial collision math, starfield rendering, particle trails, and dynamic difficulty scaling within an object-oriented codebase.
----
+Meteor Dodge is a Python/Pygame space-survival game. Pilot the ship, dodge meteors, and use lasers and shield power-ups to survive.
 
-## What's Provided
+## Setup
 
-A working Meteor Dodge game with:
-
-- A responsive player starship with engine trail effects and 4-directional movement (`WASD` / Arrow Keys)
-- Procedurally generated starfield background
-- Irregular polygonal meteors that rotate and tumble downwards at randomized speeds and angles
-- Radius-based circular collision detection against the ship
-- Dynamic spawn intervals that decrease as survival time increases
-- Launch state, survival timer HUD, and a Game Over overlay with restart functionality
-
-It has **one deliberate bug** and **three optional features** left as tasks to implement. You are expected to **analyze**, **interact with an AI assistant**, and **complete/fix** the game to make it fully functional and more interesting.
-
-### **Use an LLM (e.g. ChatGPT or Claude) as your debugging and pair-programming partner for this lab.**
----
-
-## Getting Started
-
-### Setup
-
-1. Make sure you have Python 3.10+ installed.
-2. Install dependencies:
+Requires Python 3.10 or newer.
 
 ```bash
-pip install -r requirements.txt
-```
-
-3. Run the game:
-
-```bash
+python -m pip install -r requirements.txt
 python main.py
 ```
 
-**Controls:** Press SPACE to launch or restart. Use WASD or Arrow Keys to pilot the ship.
+On Windows, `py -m pip install -r requirements.txt` and `py main.py` are alternatives if the `python` command is unavailable.
+
+## Controls
+
 | Key | Action |
-|-----|--------|
-| W/A/S/D or Arrows | Move ship |
-| SPACE | Start / Restart |
+|---|---|
+| SPACE (title screen) | Start the game |
+| SPACE (during gameplay) | Fire a defensive laser |
+| W/A/S/D or Arrow Keys | Move the ship |
+| SPACE (Game Over screen) | Restart |
 
-## Tasks to Complete
+## Implemented features
 
-Each task must be completed using an iterative process involving LLM suggestions and your critical code review.
+- **Laser firing:** SPACE fires a projectile during active gameplay. Lasers destroy meteors.
+- **Meteor splitting:** Destroying a large meteor creates two smaller fragments that diverge outward. Small meteors disappear when destroyed.
+- **Shield power-ups:** Drifting cyan energy orbs can be collected. Each collected orb absorbs one meteor collision.
+- **Survival multiplier:** The score multiplier increases every 10 seconds of continuous survival. Taking a hit that consumes a shield resets the streak and multiplier.
+- **Existing gameplay:** Starfield, ship trail, moving/rotating meteors, collision detection, increasing spawn difficulty, survival timer, and restart screen.
 
-### Task 1: Fix the laser firing / input state bug
+## Testing checklist
 
-Pressing SPACE launches the ship from the title screen, but pressing SPACE during active flight does nothing rather than firing a defensive laser projectile. Ensure the ship fires lasers to destroy incoming meteors while flying.
+- [ ] SPACE starts the game from the title screen.
+- [ ] SPACE fires lasers during gameplay.
+- [ ] Lasers destroy meteors; large meteors split into smaller fragments.
+- [ ] Collecting a shield orb displays the shield and grants one-hit protection.
+- [ ] The multiplier increases after each 10-second uninterrupted survival interval.
+- [ ] Without a shield, a meteor collision ends the run.
+- [ ] SPACE restarts after Game Over.
 
-### Task 2: Implement Meteor Splitting on Impact
+## Lab submission
 
-Destroying large meteors currently causes them to vanish completely from the screen. Make destroyed large meteors fracture into smaller child fragments that diverge outwards, while small meteors dissolve entirely.
- 
-### Task 3: Implement Collectible Shield Power-Up Orbs
-
-The ship is instantly destroyed on any meteor contact. Introduce a drifting energy orb that the player can collect to gain a temporary shield barrier capable of absorbing one collision.
-
-### Task 4: Implement Consecutive Survival Multipliers
-
-Score currently increments at a flat rate over time. Introduce an escalating multiplier that boosts score gain for every 10 seconds of continuous survival without taking a hit.
-
----
-
-## Expected Behavior
-
-- Pressing SPACE begins flight from the title screen.
-- Arrow keys or WASD steer the ship smoothly inside the window dimensions.   
-- Meteors continuously spawn from the top and fall at varying trajectories and rotation speeds.
-- Colliding with any meteor ends the run and displays the final survival time.
-- Pressing SPACE on the Game Over screen resets all objects and timers for a new run.
-
-## Folder Structure
-
-```
-meteor-dodge/
-├── main.py
-├── requirements.txt
-├── game/
-│   ├── __init__.py
-│   ├── game_engine.py
-│   ├── ship.py
-│   └── meteor.py
-└── README.md
-```
-
-## Submission Checklist
-
-Submission is only the following three things:
-
-- [] A 10-second video of gameplay **before** your changes, showing the bug/broken behavior
-- [] A 10-second video of gameplay **after** your changes, showing the bug fixed and the new features working
-- [] The Chat/LLM used page link, with the complete chat history
+Follow your instructor's Lab 4 handout. Record the original 10-second gameplay video before modifying the starter code, and record a second 10-second video after testing all features. Push the completed code to your own repository (not the SETAPESU26 repository), use separate commits for each task, and upload the required videos, code, and exported chat history to your Lab-4 folder.
